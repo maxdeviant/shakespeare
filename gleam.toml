@@ -5,6 +5,7 @@ licenses = ["MIT"]
 repository = { type = "github", user = "maxdeviant", repo = "shakespeare" }
 
 [dependencies]
+birl = "~> 1.6"
 gleam_erlang = "~> 0.25"
 gleam_otp = "~> 0.10"
 gleam_stdlib = "~> 0.34 or ~> 1.0"

@@ -4,6 +4,7 @@ import gleam/erlang/process.{type Subject}
 import gleam/function.{identity}
 import gleam/otp/actor
 import gleam/result
+import shakespeare.{type Thunk}
 
 /// An interval of time.
 pub type Interval {
@@ -15,10 +16,6 @@ pub type Interval {
 pub opaque type PeriodicActor {
   PeriodicActor(subject: Subject(Message))
 }
-
-/// A thunk.
-pub type Thunk =
-  fn() -> Nil
 
 /// Starts a new `PeriodicActor` that executes the given function on the
 /// specified interval.
