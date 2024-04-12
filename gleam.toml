@@ -1,0 +1,13 @@
+name = "shakespeare"
+version = "0.1.0"
+description = "General-purpose OTP actors."
+licenses = ["MIT"]
+repository = { type = "github", user = "maxdeviant", repo = "shakespeare" }
+
+[dependencies]
+gleam_erlang = "~> 0.25"
+gleam_otp = "~> 0.10"
+gleam_stdlib = "~> 0.34 or ~> 1.0"
+
+[dev-dependencies]
+gleeunit = "~> 1.0"
