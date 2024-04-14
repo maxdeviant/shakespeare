@@ -47,8 +47,6 @@ fn init(interval: Interval, do_work: Thunk) {
     process.new_selector()
     |> process.selecting(subject, identity)
 
-  process.send(subject, Run)
-
   enqueue_next_run(state)
   actor.Ready(state, selector)
 }
