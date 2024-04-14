@@ -2,7 +2,6 @@ import gleam/erlang/process
 import gleeunit/should
 import shakespeare/actors/key_value
 import shakespeare/actors/periodic.{Ms}
-import gleam/result
 
 pub fn periodic_actor_test() {
   let assert Ok(counter) = key_value.start()
@@ -33,8 +32,7 @@ pub fn periodic_actor_test() {
   )
 
   key_value.get(counter, "count_min")
-  |> result.unwrap(100)
-  |> should.equal(6)
+  |> should.equal(Ok(6))
 
   key_value.get(counter, "count")
   |> should.equal(Ok(5))
