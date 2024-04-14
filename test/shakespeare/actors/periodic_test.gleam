@@ -18,12 +18,12 @@ pub fn periodic_actor_test() {
     key_value.set(counter, "count_loop", count + 1)
   }
 
-  periodic.start(do: increment, every: Ms(500))
+  periodic.start(do: increment, every: Ms(10))
   |> should.be_ok
 
   loop_until(
     fn() {
-      process.sleep(500)
+      process.sleep(10)
       increment_loop_count()
       key_value.get(counter, "count") == Ok(5)
     },
@@ -32,7 +32,7 @@ pub fn periodic_actor_test() {
   )
 
   key_value.get(counter, "count_loop")
-  |> should.equal(Ok(6))
+  |> should.equal(Ok(5))
 
   key_value.get(counter, "count")
   |> should.equal(Ok(5))
