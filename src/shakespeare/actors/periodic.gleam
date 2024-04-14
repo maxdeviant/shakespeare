@@ -47,9 +47,7 @@ fn init(interval: Interval, do_work: Thunk) {
     process.new_selector()
     |> process.selecting(subject, identity)
 
-  process.send(subject, Run)
-
-  enqueue_next_run(state)
+  enqueue_first_run(state)
   actor.Ready(state, selector)
 }
 
@@ -64,6 +62,12 @@ fn loop(message: Message, state: State) -> actor.Next(Message, State) {
   }
 }
 
+/// Enqueues the first run, to run immediately by the actor.
+fn enqueue_first_run(state: State) -> Nil {
+  process.send(state.self, Run)
+}
+
+/// Enqueues the next run, to run after the actor's configured interval.
 fn enqueue_next_run(state: State) -> Nil {
   let Ms(interval) = state.interval
 
