@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2024-04-14
+
 ### Fixed
 
 - Fixed a bug where `PeriodicActor` would spawn two copies of itself.
@@ -15,5 +17,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release.
 
-[unreleased]: https://github.com/maxdeviant/shakespeare/compare/v0.1.0...HEAD
+[unreleased]: https://github.com/maxdeviant/shakespeare/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/maxdeviant/shakespeare/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/maxdeviant/shakespeare/compare/a1b5ab4...v0.1.0

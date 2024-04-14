@@ -1,5 +1,5 @@
 name = "shakespeare"
-version = "0.1.0"
+version = "0.1.1"
 description = "General-purpose OTP actors."
 licenses = ["MIT"]
 repository = { type = "github", user = "maxdeviant", repo = "shakespeare" }
