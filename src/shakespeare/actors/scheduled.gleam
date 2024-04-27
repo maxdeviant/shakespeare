@@ -1,8 +1,9 @@
 //// An actor that runs on a schedule.
 
-import birl.{type Time}
+import birl.{type Time, type Weekday}
 import birl/duration
 import gleam/erlang/process.{type Subject}
+import gleam/int
 import gleam/order
 import gleam/otp/actor
 import gleam/result
@@ -14,6 +15,8 @@ pub type Schedule {
   Hourly(minute: Int, second: Int)
   /// The actor runs daily, at the specified hour, minute, and second.
   Daily(hour: Int, minute: Int, second: Int)
+  /// The actor runs weekly, at the specified day, hour, minute, and second.
+  Weekly(day: Weekday, hour: Int, minute: Int, second: Int)
 }
 
 /// An actor that performs a given action on a schedule.
@@ -118,10 +121,39 @@ pub fn next_occurrence_at(now: Time, schedule: Schedule) -> Time {
         }
       }
     }
+    Weekly(day, hour, minute, second) -> {
+      let current_day = birl.weekday(now)
+      let day_diff = weekday_to_int(day) - weekday_to_int(current_day)
+
+      case int.compare(day_diff, 0) {
+        order.Gt | order.Eq -> {
+          now
+          |> birl.add(duration.days(day_diff))
+          |> birl.set_time_of_day(birl.TimeOfDay(hour, minute, second, 0))
+        }
+        order.Lt -> {
+          now
+          |> birl.add(duration.days(7 + day_diff))
+          |> birl.set_time_of_day(birl.TimeOfDay(hour, minute, second, 0))
+        }
+      }
+    }
   }
 }
 
 fn duration_to_milliseconds(duration: duration.Duration) -> Int {
   let duration.Duration(microseconds) = duration
   microseconds / 1000
+}
+
+fn weekday_to_int(value: Weekday) -> Int {
+  case value {
+    birl.Sun -> 0
+    birl.Mon -> 1
+    birl.Tue -> 2
+    birl.Wed -> 3
+    birl.Thu -> 4
+    birl.Fri -> 5
+    birl.Sat -> 6
+  }
 }
