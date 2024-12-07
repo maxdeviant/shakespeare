@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.3] - 2024-12-06
+
 ### Fixed
 
 - Fixed a crash when starting the `ScheduledActor` with a `Weekly` schedule set for earlier that same day.
@@ -27,7 +29,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release.
 
-[unreleased]: https://github.com/maxdeviant/shakespeare/compare/v0.1.2...HEAD
+[unreleased]: https://github.com/maxdeviant/shakespeare/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/maxdeviant/shakespeare/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/maxdeviant/shakespeare/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/maxdeviant/shakespeare/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/maxdeviant/shakespeare/compare/a1b5ab4...v0.1.0
