@@ -126,7 +126,21 @@ pub fn next_occurrence_at(now: Time, schedule: Schedule) -> Time {
       let day_diff = weekday_to_int(day) - weekday_to_int(current_day)
 
       case int.compare(day_diff, 0) {
-        order.Gt | order.Eq -> {
+        order.Eq -> {
+          let occurrence_this_day =
+            now
+            |> birl.set_time_of_day(birl.TimeOfDay(hour, minute, second, 0))
+
+          case birl.compare(now, occurrence_this_day) {
+            order.Lt | order.Eq -> occurrence_this_day
+            order.Gt -> {
+              now
+              |> birl.add(duration.days(7))
+              |> birl.set_time_of_day(birl.TimeOfDay(hour, minute, second, 0))
+            }
+          }
+        }
+        order.Gt -> {
           now
           |> birl.add(duration.days(day_diff))
           |> birl.set_time_of_day(birl.TimeOfDay(hour, minute, second, 0))

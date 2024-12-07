@@ -46,4 +46,14 @@ pub fn scheduled_next_occurrence_at_weekly_test() {
   scheduled.next_occurrence_at(now, Weekly(Fri, 18, 0, 0))
   |> birl.to_iso8601
   |> expect.to_equal("2024-05-03T18:00:00.000Z")
+
+  let assert Ok(now) = birl.parse("2024-12-06T22:29:00.065Z")
+  scheduled.next_occurrence_at(now, Weekly(Fri, 22, 30, 0))
+  |> birl.to_iso8601
+  |> expect.to_equal("2024-12-06T22:30:00.000Z")
+
+  let assert Ok(now) = birl.parse("2024-12-06T23:00:00.065Z")
+  scheduled.next_occurrence_at(now, Weekly(Fri, 22, 30, 0))
+  |> birl.to_iso8601
+  |> expect.to_equal("2024-12-13T22:30:00.000Z")
 }

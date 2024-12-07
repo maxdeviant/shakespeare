@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed a crash when starting the `ScheduledActor` with a `Weekly` schedule set for earlier that same day.
+
 ## [0.1.2] - 2024-04-27
 
 ### Added
